@@ -1,13 +1,14 @@
 <template>
 <el-container style="height:100%">
-<el-main styel="height:100%">
-     <el-header style="height:150px">
-       <sys-header :onadd="f_Add"></sys-header>
+<el-main>
+  <el-header>
+     <sys-header></sys-header>
        </el-header>
-<sys-main :data-options='sysMain'></sys-main>
+  <sys-main :data-options='sysMain'></sys-main>
+  <div :class="isCollapse==true?iconclass.circleicon:iconclass.removeicon" @click="f_toggle"></div>
 </el-main>
-   <el-menu  :collapse="isCollapse">
- <sys-aside></sys-aside>
+  <el-menu  :collapse="isCollapse">
+   <sys-aside></sys-aside>
   </el-menu>
 </el-container>
 </template>
@@ -16,46 +17,33 @@
 import SysHeader from "@/components/header/SysHeader";
 import SysMain from "@/components/main/SysMain";
 import SysAside from "@/components/aside/SysAside";
-
-let sysLitdata = [
-  {
-    id: 1,
-    Fieldname: "1234",
-    Pk: true,
-    Constraint: "Not Null",
-    Type: "int",
-    Default: "0",
-    Remark: "主键"
-  }
-];
-
-let Constraintdata = [{Name:"Not Null",Value:"Not Null"},{Name:"Null",Value:"Null"}];
-
-let Typedata = [{Name:"int",Value:"int"},{Name:"bit",Value:"bit"}];
-
-let Defaultdata =[{Name:"newid()",Value:"newid"},{Name:"0",Value:"0"}]
+import SysData from './data.js';
 
 export default {
   data() {
     return {
       sysMain: {
-        dataSource: sysLitdata,
+        dataSource: SysData.sysLitdata,
         style: "width:100%",
         size: "mini",
         columns: [
           {fldName: "Fieldname",fldType: "S",fldDesc: "字段名称",width: "300"},
           { fldName: "Pk", fldType: "C", fldDesc: "是否主键", width: "80"},
-          {fldName: "Constraint",fldType: "LC",fldDesc: "是否为空",width: "200",dataSource:Constraintdata},
-          { fldName: "Type", fldType: "LC", fldDesc: "字段类型", width: "200",dataSource:Typedata },
-          {fldName: "Default",fldType: "LC",fldDesc: "默认值",width: "200",dataSource:Defaultdata},
+          {fldName: "Constraint",fldType: "LC",fldDesc: "是否为空",width: "200",dataSource:SysData.Constraintdata},
+          { fldName: "Type", fldType: "LC", fldDesc: "字段类型", width: "200",dataSource:SysData.Typedata },
+          {fldName: "Default",fldType: "LC",fldDesc: "默认值",width: "200",dataSource:SysData.Defaultdata},
           { fldName: "Remark", fldType: "S", fldDesc: "备注", width: "300" }
         ]
       },
-      isCollapse:true
+      isCollapse:true,
+      iconclass:{
+        circleicon:'el-icon-circle-plus-outline el-icon-style',
+        removeicon:'el-icon-remove-outline el-icon-style'
+      }
     };
   },
   methods: {
-    f_Add(){
+    f_toggle(){
       this.isCollapse=!this.isCollapse;
     }
   },
@@ -68,28 +56,39 @@ export default {
 </script>
 
 <style>
-.el-aside {
-  border: 1px solid #ebebeb;
-  border-radius: 3px;
-  transition: 0.2s;
-}
 .el-main {
   border: 1px solid #ebebeb;
   border-radius: 3px;
   transition: 0.2s;
   height:100%;
+  position:relative
 }
 .el-header {
   border: 1px solid #ebebeb;
   border-radius: 3px;
   transition: 0.2s;
+  height:150px !important;
 }
-.el-tabs {
+/* .el-tabs {
   border: 1px solid #ebebeb;
   border-radius: 3px;
   transition: 0.2s;
+} */
+.el-menu--collapse {
+    width: 0px;
+}
+.el-icon-style{
+  z-index:9999;
+  position:absolute;
+  right:0;top:50%;
+  cursor:pointer
 }
 body {
-  height: 100%;
+  height: 95%;
+  overflow:hidden;
+}
+html{
+  height:100%;
+  overflow:hidden;
 }
 </style>

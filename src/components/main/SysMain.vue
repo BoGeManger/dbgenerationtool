@@ -25,3 +25,14 @@ export default {
   }
 }
 </script>
+
+<style>
+.el-tabs {
+  border: 1px solid #ebebeb;
+  border-radius: 3px;
+  transition: 0.2s;
+}
+.el-tabs__content {
+  height: 100%;
+}
+</style>
