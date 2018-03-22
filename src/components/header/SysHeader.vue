@@ -1,5 +1,5 @@
 <template>
-<el-button>增加</el-button>
+<el-button >增加</el-button>
 </template>
 
 <script>
@@ -9,6 +9,6 @@ export default {
     }
   },
   methods: {
-  }
+  },
 }
 </script>

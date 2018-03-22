@@ -3,8 +3,11 @@
     :data="dataOptions.dataSource"
     :style="dataOptions.style" :size="dataOptions.size">
     <template v-for="column in dataOptions.columns">
+        <!-- 数字格式 -->
+        <el-table-column v-if="column.fldType=='I'" :prop="column.fldName" :label="column.fldDesc" :width="column.width" :formatter="column.format" :align="column.align==null?'center':column.align">
+        </el-table-column>
         <!-- 日期格式 -->
-        <el-table-column v-if="column.fldType=='D'" :prop="column.fldName" :label="column.fldDesc" :width="column.width" :formatter="column.format" :align="column.align==null?'center':column.align">
+        <el-table-column v-else-if="column.fldType=='D'" :prop="column.fldName" :label="column.fldDesc" :width="column.width" :formatter="column.format" :align="column.align==null?'center':column.align">
             <template scope="scope">
                    <el-date-picker v-model="scope.row[column.fldName]" type="date" placeholder="选择日期">
                    </el-date-picker>
