@@ -1,5 +1,5 @@
 <template>
-  <el-tabs value="base" type="card" addable>
+  <el-tabs value="base" type="card">
     <el-tab-pane label="基础字段" name="base">      
       <sys-list :data-options="dataOptions.sysListBaseOptions"></sys-list>
     </el-tab-pane>

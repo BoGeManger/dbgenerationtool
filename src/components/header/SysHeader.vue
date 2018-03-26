@@ -1,14 +1,15 @@
 <template>
-<el-button >增加</el-button>
+  <sys-tab :data-options="dataOptions"></sys-tab>
 </template>
 
+
 <script>
+import SysTab from '@/components/common/SysTab'
+
 export default {
-  data() {
-    return {
-    }
-  },
-  methods: {
-  },
+  props:['data-options'],
+  components:{
+    "sys-tab":SysTab
+  }
 }
 </script>

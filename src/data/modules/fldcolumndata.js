@@ -8,7 +8,7 @@
          fldName: "id",
          fldType: "I",
          fldDesc: "",
-         width: "30"
+         width: "20"
        },
        {
          fldName: "Fieldname",
@@ -26,7 +26,7 @@
          fldName: "Constraint",
          fldType: "LC",
          fldDesc: "是否为空",
-         width: "200",
+         width: "180",
          dataSource: Constraintdata
        },
        {
