@@ -1,5 +1,5 @@
 <template>
-<el-form ref="form"  :label-width="dataOptions.width" :label-position="dataOptions.position">
+<el-form ref="form"  :label-width="dataOptions.width" :label-position="dataOptions.position" :ref="this.$attrs.id">
   <el-row :gutter="20">
    <template v-for="item in dataOptions.fields">
     <el-col :span="item.span">

@@ -1,5 +1,5 @@
 <template>
-  <sys-tab :data-options="dataOptions"></sys-tab>
+  <sys-tab id="systab" :data-options="dataOptions"></sys-tab>
 </template>
 
 

@@ -8,7 +8,7 @@
          fldName: "id",
          fldType: "I",
          fldDesc: "",
-         width: "20"
+         width: "30"
        },
        {
          fldName: "Fieldname",

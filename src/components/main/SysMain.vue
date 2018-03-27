@@ -1,23 +1,33 @@
 <template>
-  <el-tabs value="base" type="card">
+  <el-tabs value="base" type="card" ref="systabscard" @tab-click="handleClick">
     <el-tab-pane label="基础字段" name="base">      
-      <sys-list :data-options="dataOptions.sysListBaseOptions"></sys-list>
+      <sys-list id="sysbaselist" :data-options="dataOptions.sysListBaseOptions"></sys-list>
     </el-tab-pane>
     <el-tab-pane label="业务字段" name="business">
-      <sys-list :data-options="dataOptions.sysListBusinessOptions"></sys-list>
+      <sys-list id="sysbusinesslist" :data-options="dataOptions.sysListBusinessOptions"></sys-list>
     </el-tab-pane>
   </el-tabs>
 </template>
 
 <script>
-import SysList from '@/components/common/SysList'
+import SysList from "@/components/common/SysList";
 
 export default {
-  props:['data-options'],
-  components:{
-    "sys-list":SysList
+  data() {
+    return{
+    tabsval: "base"
+    }
+  },
+  props: ["data-options"],
+  components: {
+    "sys-list": SysList
+  },
+  methods: {
+    handleClick(tab) {
+      this.dataOptions.selecttab=tab.name;
+    }
   }
-}
+};
 </script>
 
 <style>
