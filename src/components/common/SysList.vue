@@ -1,7 +1,7 @@
 <template>
     <el-table
     :data="dataOptions.dataSource"
-    :style="dataOptions.style" :size="dataOptions.size">
+    :style="dataOptions.style" :size="dataOptions.size" highlight-current-row ref='dataOptions.title'>
     <template v-for="column in dataOptions.columns">
         <!-- 数字格式 -->
         <el-table-column v-if="column.fldType=='I'" :prop="column.fldName" :label="column.fldDesc" :width="column.width" :formatter="column.format" :align="column.align==null?'center':column.align">
@@ -28,7 +28,7 @@
             </template>
         </el-table-column>
         <!-- 文本格式 -->
-        <el-table-column v-else="column.fldType=='S'" :prop="column.fldName" :label="column.fldDesc" :width="column.width" :formatter="column.format" :align="column.align==null?'center':column.align">
+        <el-table-column v-else :prop="column.fldName" :label="column.fldDesc" :width="column.width" :formatter="column.format" :align="column.align==null?'center':column.align">
             <template scope="scope">
                   <el-input v-model="scope.row[column.fldName]"></el-input>
             </template>
