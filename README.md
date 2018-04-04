@@ -1,4 +1,4 @@
-# dbgenerationtool
+# dbgenerationtool by Nyberg
 ### SQL server, MySQL database statement generation tool, mainly used in building tables and fields modification.
 
 Related technology stack：
