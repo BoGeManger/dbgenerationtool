@@ -1,4 +1,4 @@
-    import columndata from './fldcolumndata'
+    import columndata from './sysfldcolumndata'
     //基础字段列表配置
     let sysListBaseOptions ={
         primaryKey:"id",

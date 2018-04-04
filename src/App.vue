@@ -22,42 +22,8 @@ import SysData from "./data";
 export default {
   data() {
     return {
-      sysHeaderdataOptions: {
-        fields: [
-          { fldName: "Tablenameprefixed", fldType: "S", fldDesc: "表头" },
-          {
-            fldName: "Datasource",
-            fldType: "S",
-            fldDesc: "数据库",
-            colspan: 3
-          },
-          { fldName: "Tablenmae", fldType: "S", fldDesc: "表名" },
-          { fldName: "Desc", fldType: "S", fldDesc: "备注", colspan: 3 },
-          {
-            fldName: "Selecttable",
-            fldType: "LC",
-            fldDesc: "选择表",
-            dataSource: []
-          },
-          {
-            fldName: "New",
-            fldType: "B",
-            fldDesc: "新建表",
-            colspan: 3,
-            dataSource: [
-              { BtnName: "新建表", BtnEvent: "f_Add" },
-              { BtnName: "增加行", BtnEvent: this.f_Add },
-              { BtnName: "删除行", BtnEvent: this.f_Del },
-              { BtnName: "运行", BtnEvent: "f_Add" }
-            ]
-          }
-        ],
-        col: 4,
-        dataSource: {},
-        width: "80px",
-        position: "left"
-      },
-      sysMaindataOptions: SysData,
+      sysHeaderdataOptions: SysData.sysTab,
+      sysMaindataOptions: SysData.sysList,
       isCollapse: true,
       iconclass: {
         circleicon: "el-icon-circle-plus-outline el-icon-style",
@@ -98,7 +64,7 @@ export default {
         this.sysMaindataOptions.selecttab == "base"
           ? this.sysMaindataOptions.sysListBaseOptions
           : this.sysMaindataOptions.sysListBusinessOptions;
-          console.log(dataOptions.selectid);
+      console.log(dataOptions.selectid);
       if (dataOptions.selectid == null) {
         alert("请选择数据！");
         return;
@@ -109,8 +75,17 @@ export default {
         ),
         1
       );
-      dataOptions.selectid=null;
-    }
+      dataOptions.selectid = null;
+    },
+    f_New() {
+      if (this.sysMaindataOptions.selecttab == "base") {
+        this.sysMaindataOptions.sysListBaseOptions.dataSource = [];
+      } else {
+        this.sysMaindataOptions.sysListBusinessOptions.dataSource = [];
+      }
+      this.f_Add();
+    },
+    f_Gen() {}
   },
   components: {
     "sys-header": SysHeader,
@@ -118,19 +93,27 @@ export default {
     "sys-aside": SysAside
   },
   mounted() {
-    for (let i = 0; i <= 4; i++) {
-      let data = {
-        id: i + 1,
-        Fieldname: "",
-        Pk: false,
-        Constraint: "Null",
-        Type: "int",
-        Default: "",
-        Remark: ""
-      };
-      this.sysMaindataOptions.sysListBusinessOptions.dataSource.push(data);
-    }
     this.sysMaindataOptions.selecttab = "base";
+    this.sysHeaderdataOptions.fields.forEach((value, index) => {
+      if (value.fldType == "B") {
+        value.dataSource.forEach((nvalue, index) => {
+          switch (nvalue.BtnName) {
+            case "新建表":
+              nvalue.BtnEvent = this.f_New;
+              break;
+            case "增加行":
+              nvalue.BtnEvent = this.f_Add;
+              break;
+            case "删除行":
+              nvalue.BtnEvent = this.f_Del;
+              break;
+            case "运行":
+              nvalue.BtnEvent = this.f_Gen;
+              break;
+          }
+        });
+      }
+    });
   }
 };
 </script>

@@ -2,7 +2,7 @@
        Constraintdata,
        Typedata,
        Defaultdata
-     } from './flddatasource'
+     } from './sysflddatasource'
      // 字段配置
      const columndata = [{
          fldName: "id",
