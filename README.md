@@ -58,7 +58,7 @@ fldDesc              |desc          |string  |yes     |The label of the componen
 colspan              |col           |int     |no      |The cell in the form in which the cell is located
 dataSource           |dataSource    |array   |no      |B type and LC type use
 
-### sysList fldType support type
+### systab fldType support type
 |Attribute     |data type     |control type    |Remarks
 ---------------|--------------|----------------|--------
 B              |array         |button          |If dataSource is used, it's a button group, otherwise it's a single button.  
