@@ -1,7 +1,7 @@
 <template>
     <el-table
     :data="dataOptions.dataSource"
-    :style="dataOptions.style" :size="dataOptions.size" :ref="this.$attrs.id" highlight-current-row @current-change="handleCurrentChange">
+    :style="dataOptions.style" :size="dataOptions.size==null?'mini':dataOptions.size" :ref="this.$attrs.id" highlight-current-row @current-change="handleCurrentChange">
     <template v-for="column in dataOptions.columns">
         <!-- 数字格式 -->
         <el-table-column v-if="column.fldType=='I'" :prop="column.fldName" :label="column.fldDesc" :width="column.width" :formatter="column.format" :align="column.align==null?'center':column.align">
